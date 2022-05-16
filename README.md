@@ -8,7 +8,7 @@ This document is written by [Min-guk Choi](https://github.com/korea-choi).
 git clone --recurse-submodules https://github.com/google/leveldb.git
 ```
 
-**2. Add -pg Option on [leveldb/CMakeList.txt](https://github.com/google/leveldb/blob/main/CMakeLists.txt) for uftrace**  
+**2. Add -pg option on [leveldb/CMakeList.txt](https://github.com/google/leveldb/blob/main/CMakeLists.txt) for uftrace**  
 ``` cmake
 # Add gcc -pg option for uftrace
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
@@ -71,8 +71,7 @@ uftrace graph
 * [RocksDB](https://github.com/facebook/rocksdb/blob/main/INSTALL.md)  
   - `git clone https://github.com/facebook/rocksdb.git`
 
-**2. Add -pg Option for uftrace**
-* [rocksdb/Makefile](https://github.com/facebook/rocksdb/blob/main/CMakeLists.txt)
+**2. Add -pg option on [rocksdb/Makefile](https://github.com/facebook/rocksdb/blob/main/CMakeLists.txt) for uftrace**
   ``` Makefile
   # Add gcc -pg option for uftrace
   CXXFLAGS += ${EXTRA_CXXFLAGS} -pg
