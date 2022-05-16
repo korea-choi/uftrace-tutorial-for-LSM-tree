@@ -2,8 +2,8 @@
 
 This document is written by [Min-guk Choi](https://github.com/korea-choi).
 
-## LevelDB
-**1. Download [LevelDB](https://github.com/google/leveldb)**  
+## [LevelDB](https://github.com/google/leveldb)
+**1. Download LevelDB**  
 ```
 git clone --recurse-submodules https://github.com/google/leveldb.git
 ```
@@ -21,30 +21,29 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
   ```
 
 **4. Record LevelDB db_bench**
-  - find other LevelDB db_bench options. [here](https://github.com/google/leveldb/blob/main/benchmarks/db_bench.cc)
   ```
   cd build
   uftrace record db_bench
   ```
+  - find LevelDB db_bench options. [here](https://github.com/google/leveldb/blob/main/benchmarks/db_bench.cc)
 
 **5. uftrace**  
-**1) replay : Function call Tracing**  
-```
-uftrace replay
-```
+**1) replay: function call tracing**  
+  ```
+  uftrace replay
+  ```
 
-**2) graph: Function call graph**  
-```
-uftrace graph
-```
+**2) graph: function call graph**  
+  ```
+  uftrace graph
+  ```
 
-**3) tui: Function call graph**  
-```
-uftrace graph
-```
+**3) tui: terminal UI**  
+  ```
+  uftrace tui
+  ```
 **6. Filter**  
   - Below filiters are recommanded to find important LevelDB function only.  
-  - find more about uftrace filiter, [here](https://github.com/namhyung/uftrace/wiki/Filters).  
 
 |filter|description|
 |---|---|
@@ -60,15 +59,21 @@ uftrace graph
 |-H ^leveldb::DecodeFixed|Hide [Decode](https://github.com/google/leveldb/blob/main/util/coding.h) function that read directly from a character buffer.|
 |-H ^leveldb::EncodeFixed|Hide [Encode](https://github.com/google/leveldb/blob/main/util/coding.h) function that write directly from a character buffer.|
 |-H ^leveldb::operator||
+  
+  - Try replay/graph with filters
+  ```
+  uftrace replay --no-libcall -N ^leveldb::Slice::
+  ```
 
+  - find more about uftrace filiter, [here](https://github.com/namhyung/uftrace/wiki/Filters).  
 
-## RocksDB
-**1. Download [RocksDB](https://github.com/facebook/rocksdb/blob/main/INSTALL.md) and Dependencies**
+## [RocksDB](https://github.com/facebook/rocksdb)
+**1. Download [RocksDB](https://github.com/facebook/rocksdb/blob/main/INSTALL.md) and Install dependencies**
 * Dependencies
   - Install gflags : `sudo apt-get install libgflags-dev`
   - Install snappy : `sudo apt-get install libsnappy-dev`
 
-* [RocksDB](https://github.com/facebook/rocksdb/blob/main/INSTALL.md)  
+* RocksDB
   - `git clone https://github.com/facebook/rocksdb.git`
 
 **2. Add -pg option on [rocksdb/Makefile](https://github.com/facebook/rocksdb/blob/main/CMakeLists.txt) for uftrace**
@@ -79,16 +84,15 @@ uftrace graph
   ```
 
 **3. Build**
-* [rocksdb](https://github.com/facebook/rocksdb/blob/main/INSTALL.md)
-  ```
-  make check
-  ```
-
+  - Make db_bench only: `make db_bench`
+  - Make all: `make all`
+  - find RocksDB install details, [here](https://github.com/facebook/rocksdb/wiki/Benchmarking-tools).  
+  
 **4. Record RocksDB db_bench**
   ```
   uftrace record db_bench
   ```
-  - find other RocksDB db_bench options. [here](https://github.com/facebook/rocksdb/wiki/Benchmarking-tools)
+  - find RocksDB db_bench options. [here](https://github.com/facebook/rocksdb/blob/main/INSTALL.md)  
 
 **5. uftrace**  
 **1) replay : Function call Tracing**  
@@ -105,7 +109,15 @@ uftrace graph
 ```
 uftrace graph
 ```
-## YCSB-cpp
+## [YCSB-cpp](https://github.com/ls4154/YCSB-cpp/)
+Yahoo! Cloud Serving Benchmark([YCSB](https://github.com/brianfrankcooper/YCSB/wiki)) written in C++.
+This is a fork of [YCSB-C](https://github.com/basicthinker/YCSB-C) with following changes.
+ 
+ * Easy to Bind with LevelDB, RocksDB, LMDB
+ * Make Zipf distribution and data value more similar to the original YCSB
+ * Status and latency report during benchmark
+
+
 **1. Download YCSB-cpp**
 ```
 git clone https://github.com/ls4154/YCSB-cpp.git
@@ -116,7 +128,7 @@ git clone https://github.com/ls4154/YCSB-cpp.git
 CXXFLAGS += -pg
 ```
 
-**3. Bind LevelDB/RocksDB with YCSB-cpp**
+**3. Bind LevelDB/RocksDB (Choose One) with YCSB-cpp**
 * LevelDB
 ```Make
 EXTRA_CXXFLAGS ?= -I/example/leveldb/include
