@@ -109,11 +109,11 @@ uftrace graph
 ```
 uftrace graph
 ```
-## [YCSB-cpp](https://github.com/ls4154/YCSB-cpp/)
+## LevelDB/RocksDB with [YCSB-cpp](https://github.com/ls4154/YCSB-cpp/)
 Yahoo! Cloud Serving Benchmark([YCSB](https://github.com/brianfrankcooper/YCSB/wiki)) written in C++.
 This is a fork of [YCSB-C](https://github.com/basicthinker/YCSB-C) with following changes.
  
- * Easy to Bind with LevelDB, RocksDB, LMDB
+ * Easy to bind with LevelDB, RocksDB, LMDB
  * Make Zipf distribution and data value more similar to the original YCSB
  * Status and latency report during benchmark
 
@@ -157,5 +157,20 @@ uftrace record ycsb -run -db leveldb -P workloads/workloada -P leveldb/leveldb.p
 uftrace record ycsb -load -run -db rocksdb -P workloads/workloadb -P rocksdb/rocksdb.properties -s
 ```
 
+**6. uftrace**  
+**1) replay: function call tracing**  
+  ```
+  uftrace replay
+  ```
+
+**2) graph: function call graph**  
+  ```
+  uftrace graph
+  ```
+
+**3) tui: terminal UI**  
+  ```
+  uftrace tui
+  ```
 
 
