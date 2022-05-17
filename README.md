@@ -31,8 +31,9 @@ if(CMAKE_CXX_COMPILER_ID STREQUAL "MSVC")
   - Find more LevelDB db_bench options [here](https://github.com/google/leveldb/blob/main/benchmarks/db_bench.cc).
 
 **5. uftrace**  
-  - uftrace filters are recommended to find important YCSB functions. Find uftrace filter details [here](https://github.com/namhyung/uftrace/wiki/Filters).  
-**1) replay: function call tracing**  
+  - <span style='background-color: #f6f8fa'>uftrace filters</span> are recommended to find important YCSB functions. Find uftrace filter details [here](https://github.com/namhyung/uftrace/wiki/Filters).  
+
+  **1) replay: function call tracing**  
   ```
 $ uftrace replay
 # DURATION     TID     FUNCTION
@@ -143,8 +144,9 @@ $uftrace tui
   - Find RocksDB db_bench options [here](https://github.com/facebook/rocksdb/blob/main/INSTALL.md).  
 
 **5. uftrace**  
-  - uftrace filters are recommended to find important RocksDB functions. Find uftrace filter details [here](https://github.com/namhyung/uftrace/wiki/Filters).  
-**1) replay : function call tracing**  
+  - <span style='background-color: #f6f8fa'>uftrace filters</span> are recommended to find important RocksDB functions. Find uftrace filter details [here](https://github.com/namhyung/uftrace/wiki/Filters).  
+
+  **1) replay : function call tracing**  
 ```
 $ uftrace replay
 # DURATION     TID     FUNCTION
@@ -278,8 +280,9 @@ uftrace record ycsb -load -run -db rocksdb -P workloads/workloadb -P rocksdb/roc
 ```
 
 **6. uftrace**  
-  - uftrace filters are recommended to find important YCSB functions. Find uftrace filter details [here](https://github.com/namhyung/uftrace/wiki/Filters).  
-**1) replay: function call tracing**  
+  - <span style='background-color: #f6f8fa'>uftrace filters</span> are recommended to find important YCSB functions. Find uftrace filter details [here](https://github.com/namhyung/uftrace/wiki/Filters).  
+
+  **1) replay: function call tracing**  
   ```
 $ uftrace replay
 # DURATION     TID     FUNCTION
@@ -367,5 +370,3 @@ $ uftrace graph
              :  │  │
   691.842 us :  │  ├▶(1) ParseCommandLine
   ```
-
-
