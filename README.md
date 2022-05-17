@@ -81,17 +81,6 @@ $ uftrace graph
     0.055 us :  |  |  |  +-(1) __cxa_guard_acquire
              :  |  |  |  | 
     0.046 us :  |  |  |  +-(1) __cxa_guard_release
-             :  |  |  | 
-    1.497 us :  |  |  +-(4) leveldb::Env::Default
-    0.032 us :  |  |     +-(1) __cxa_guard_acquire
-             :  |  |     | 
-    0.027 us :  |  |     +-(1) leveldb::Env::Env
-             :  |  |     | 
-    0.115 us :  |  |     +-(1) std::condition_variable::condition_variable
-             :  |  |     | 
-    0.211 us :  |  |     +-(2) operator new
-             :  |  |     | 
-    0.278 us :  |  |     +-(1) getrlimit
   ```
 
 **3) tui: terminal UI**  
@@ -116,19 +105,6 @@ $uftrace tui
     0.443 us :  │  ├─(2) pthread_mutex_unlock
              :  │  │
     0.101 us :  │  ├─(1) leveldb::Histogram::Clear
-             :  │  │
-    0.561 us :  │  ├─(2) leveldb::_GLOBAL__N_1::PosixEnv::NowMicros
-    0.145 us :  │  │ (2) gettimeofday
-             :  │  │
-  105.713 ms :  │  └─(1) leveldb::Benchmark::WriteSeq
-  105.713 ms :  │    (1) leveldb::Benchmark::DoWrite
-    7.309 ms :  │     ├─(10486) leveldb::test::CompressibleString
-    1.021 ms :  │     │  ├─(20972) std::__cxx11::basic_string::resize
-             :  │     │  │
-  805.323 us :  │     │  ├─(20972) std::__cxx11::basic_string::_M_append
-             :  │     │  │
-  483.717 us :  │     │  └─(10486) operator delete
-
   ```
 
 ## [RocksDB](https://github.com/facebook/rocksdb)
@@ -215,17 +191,6 @@ $ uftrace graph
              :  |  | 
     4.000 us :  |  +-(37) std::__cxx11::basic_string::_M_construct
     0.114 us :  |  |  +-(2) std::__cxx11::basic_string::_M_create
-             :  |  |  | 
-    0.932 us :  |  |  +-(22) memcpy
-             :  |  | 
-  126.887 us :  |  +-(327) google::FlagRegisterer::FlagRegisterer
-             :  |  | 
-    1.168 ms :  |  +-(43) rocksdb::Options::Options
-   78.629 us :  |  |  +-(43) rocksdb::DBOptions::DBOptions
-   60.217 us :  |  |  |  +-(43) rocksdb::Env::Default
-   11.774 us :  |  |  |  |  +-(43) rocksdb::ThreadLocalPtr::InitSingletons
-    7.418 us :  |  |  |  |  | (43) rocksdb::ThreadLocalPtr::Instance
-    1.065 us :  |  |  |  |  |  +-(1) __cxa_guard_acquire
 ```
 
 **3) tui: terminal UI**  
@@ -234,34 +199,25 @@ $ uftrace tui
   TOTAL TIME : FUNCTION
     2.857  s : (1) db_bench
     2.001 ms :  ├─(1) _GLOBAL__sub_I_fLS::FLAGS_benchmarks::cxx11
-    1.998 ms :  │ (1) __static_initialization_and_destruction_0
-    0.185 us :  │  ├─(1) std::ios_base::Init::Init
-              :  │  │
-    2.086 us :  │  ├─(34) __cxa_atexit
-              :  │  │
-    25.533 us :  │  ├▶(38) std::__cxx11::basic_string::basic_string
-              :  │  │
-    4.000 us :  │  ├▶(37) std::__cxx11::basic_string::_M_construct
-              :  │  │
-  126.887 us :  │  ├─(327) google::FlagRegisterer::FlagRegisterer
-              :  │  │
-    1.168 ms :  │  ├▶(43) rocksdb::Options::Options                                                                                             
-              :  │  │
-  575.538 us :  │  ├─(43) rocksdb::ColumnFamilyOptions::~ColumnFamilyOptions
-  564.492 us :  │  │  ├─(86) std::_Sp_counted_base::_M_release
-  535.588 us :  │  │  │  ├─(86) std::_Sp_counted_ptr::_M_dispose
-    9.796 us :  │  │  │  │  ├─(43) rocksdb::port::Mutex::~Mutex
-    1.613 us :  │  │  │  │  │  ├─(43) pthread_mutex_destroy
-              :  │  │  │  │  │  │
-    1.216 us :  │  │  │  │  │  └─(43) rocksdb::port::PthreadCall
-              :  │  │  │  │  │
-  376.456 us :  │  │  │  │  ├─(43) std::_Sp_counted_ptr_inplace::_M_dispose
-  373.697 us :  │  │  │  │  │ (43) rocksdb::lru_cache::LRUCache::~LRUCache
-  172.501 us :  │  │  │  │  │  ├─(731) rocksdb::port::Mutex::~Mutex
-    22.442 us :  │  │  │  │  │  │  ├─(731) pthread_mutex_destroy
-              :  │  │  │  │  │  │  │
-    36.418 us :  │  │  │  │  │  │  └─(731) rocksdb::port::PthreadCall
-
+    1.998 ms :  │▶(1) __static_initialization_and_destruction_0
+             :  │
+    2.194 us :  ├─(1) _GLOBAL__sub_I_RegisterCustomObjects
+    0.090 us :  │  ├─(2) __cxa_atexit
+             :  │  │
+    0.045 us :  │  ├─(1) rocksdb::BlockBasedTableOptions::~BlockBasedTableOptions
+             :  │  │
+    0.490 us :  │  ├─(3) std::_Rb_tree::_M_get_insert_hint_unique_pos
+    0.135 us :  │  │ (3) std::_Rb_tree::_M_get_insert_unique_pos
+             :  │  │
+    0.048 us :  │  ├─(1) operator new
+             :  │  │
+    0.047 us :  │  └─(1) std::_Rb_tree_insert_and_rebalance
+             :  │
+    6.626 us :  ├─(1) _GLOBAL__sub_I_rocksdb::SecondaryCache::CreateFromString
+    6.537 us :  │ (1) __static_initialization_and_destruction_0
+    0.126 us :  │  ├─(2) std::__cxx11::basic_string::_M_create
+             :  │  │
+    2.812 us :  │  ├─(1) std::_Hashtable::_Hashtable
 ```
 ## LevelDB/RocksDB with [YCSB-cpp](https://github.com/ls4154/YCSB-cpp/)
 Yahoo! Cloud Serving Benchmark([YCSB](https://github.com/brianfrankcooper/YCSB/wiki)) written in C++.
@@ -322,12 +278,37 @@ uftrace record ycsb -load -run -db rocksdb -P workloads/workloadb -P rocksdb/roc
 **6. uftrace**  
 **1) replay: function call tracing**  
   ```
-  uftrace replay
+$ uftrace replay
+# DURATION     TID     FUNCTION
+            [ 14801] | _GLOBAL__sub_I_ycsbc::LeveldbDB::db_() {
+            [ 14801] |   __static_initialization_and_destruction_0() {
+  36.825 us [ 14801] |     std::ios_base::Init::Init();
+   0.108 us [ 14801] |     __cxa_atexit();
+   0.095 us [ 14801] |     std::allocator::allocator();
+            [ 14801] |     std::__cxx11::basic_string::basic_string() {
+   1.309 us [ 14801] |       std::__cxx11::basic_string::_M_local_data();
+   0.105 us [ 14801] |       std::__cxx11::basic_string::_Alloc_hider::_Alloc_hider();
+   1.634 us [ 14801] |       std::char_traits::length();
+            [ 14801] |       std::__cxx11::basic_string::_M_construct() {
+            [ 14801] |         std::__cxx11::basic_string::_M_construct_aux() {
+            [ 14801] |           std::__cxx11::basic_string::_M_construct() {
+   0.033 us [ 14801] |             __gnu_cxx::__is_null_pointer();
+            [ 14801] |             std::distance() {
+   0.033 us [ 14801] |               std::__iterator_category();
+   0.030 us [ 14801] |               std::__distance();
+   0.224 us [ 14801] |             } /* std::distance */
+   0.036 us [ 14801] |             std::__cxx11::basic_string::_M_data();
+   0.572 us [ 14801] |             std::__cxx11::basic_string::_S_copy_chars();
+   0.045 us [ 14801] |             std::__cxx11::basic_string::_M_set_length();
+   1.638 us [ 14801] |           } /* std::__cxx11::basic_string::_M_construct */
+   1.781 us [ 14801] |         } /* std::__cxx11::basic_string::_M_construct_aux */
+   1.911 us [ 14801] |       } /* std::__cxx11::basic_string::_M_construct */
+   5.763 us [ 14801] |     } /* std::__cxx11::basic_string::basic_string */  
   ```
 
 **2) graph: function call graph**  
-  ```
-$uftrace graph
+```
+$ uftrace graph
 # Function Call Graph for 'ycsb' (session: 7357e48f43b1e2e0)
 ========== FUNCTION CALL GRAPH ==========
 # TOTAL TIME   FUNCTION
@@ -348,17 +329,7 @@ $uftrace graph
     2.485 us :  |  |  +-(19) std::char_traits::length
              :  |  |  | 
    17.844 us :  |  |  +-(19) std::__cxx11::basic_string::_M_construct
-   16.514 us :  |  |    (19) std::__cxx11::basic_string::_M_construct_aux
-   15.111 us :  |  |    (19) std::__cxx11::basic_string::_M_construct
-    0.531 us :  |  |     +-(19) __gnu_cxx::__is_null_pointer
-             :  |  |     | 
-    3.526 us :  |  |     +-(19) std::distance
-    0.543 us :  |  |     |  +-(19) std::__iterator_category
-             :  |  |     |  | 
-    0.549 us :  |  |     |  +-(19) std::__distance
-             :  |  |     | 
-    0.855 us :  |  |     +-(25) std::__cxx11::basic_string::_M_data
-  ```
+```
 
 **3) tui: terminal UI**  
   ```
@@ -393,3 +364,5 @@ $uftrace graph
              :  │  │
   691.842 us :  │  ├▶(1) ParseCommandLine
   ```
+
+
