@@ -25,7 +25,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
   cd build
   uftrace record db_bench
   ```
-  - find LevelDB db_bench options. [here](https://github.com/google/leveldb/blob/main/benchmarks/db_bench.cc)
+  - find LevelDB db_bench options[here](https://github.com/google/leveldb/blob/main/benchmarks/db_bench.cc).
 
 **5. uftrace**  
 **1) replay: function call tracing**  
@@ -43,9 +43,9 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
   uftrace tui
   ```
 **6. Filter**  
-  - Below filiters are recommanded to find important LevelDB function only.  
+  - Recommended filters to find importat LevelDB functions
 
-|filter|description|
+|Filter|Description|
 |---|---|
 |--no-libcall|Do not show library calls.|
 |-N ^leveldb::Slice::||
@@ -65,7 +65,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
   uftrace replay --no-libcall -N ^leveldb::Slice::
   ```
 
-  - find more about uftrace filiter, [here](https://github.com/namhyung/uftrace/wiki/Filters).  
+  - Find more about uftrace filiter[here](https://github.com/namhyung/uftrace/wiki/Filters).  
 
 ## [RocksDB](https://github.com/facebook/rocksdb)
 **1. Download [RocksDB](https://github.com/facebook/rocksdb/blob/main/INSTALL.md) and Install dependencies**
@@ -86,13 +86,13 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
 **3. Build**
   - Make db_bench only: `make db_bench`
   - Make all: `make all`
-  - find RocksDB install details, [here](https://github.com/facebook/rocksdb/wiki/Benchmarking-tools).  
+  - Find RocksDB install details [here](https://github.com/facebook/rocksdb/wiki/Benchmarking-tools).  
   
 **4. Record RocksDB db_bench**
   ```
   uftrace record db_bench
   ```
-  - find RocksDB db_bench options. [here](https://github.com/facebook/rocksdb/blob/main/INSTALL.md)  
+  - Find RocksDB db_bench options [here](https://github.com/facebook/rocksdb/blob/main/INSTALL.md).  
 
 **5. uftrace**  
 **1) replay : Function call Tracing**  
@@ -111,11 +111,11 @@ uftrace graph
 ```
 ## LevelDB/RocksDB with [YCSB-cpp](https://github.com/ls4154/YCSB-cpp/)
 Yahoo! Cloud Serving Benchmark([YCSB](https://github.com/brianfrankcooper/YCSB/wiki)) written in C++.
-This is a fork of [YCSB-C](https://github.com/basicthinker/YCSB-C) with following changes.
+This is a fork of the [YCSB-C](https://github.com/basicthinker/YCSB-C) with the following changes.
  
- * Easy to bind with LevelDB, RocksDB, LMDB
+ * Easy to bind with LevelDB, RocksDB and LMDB
  * Make Zipf distribution and data value more similar to the original YCSB
- * Status and latency report during benchmark
+ * Status and latency reports during benchmark
 
 
 **1. Download YCSB-cpp**
@@ -128,7 +128,7 @@ git clone https://github.com/ls4154/YCSB-cpp.git
 CXXFLAGS += -pg
 ```
 
-**3. Bind LevelDB/RocksDB (Choose One) with YCSB-cpp**
+**3. Bind either LevelDB or RocksDB with YCSB-cpp**
 * LevelDB
 ```Make
 EXTRA_CXXFLAGS ?= -I/example/leveldb/include
@@ -147,12 +147,12 @@ BIND_ROCKSDB ?= 1
 make
 ```
 
-**5. Record ycsb**
-- load and record ycsb workload A with leveldb:
+**5. Record YCSB**
+- Load and record YCSB workload A with LevelDB:
 ```
 uftrace record ycsb -run -db leveldb -P workloads/workloada -P leveldb/leveldb.properties -s
 ```
-- load and run and record ycsb workload B with rocksdb:
+- Load, run and record YCSB workload B with RocksDB:
 ```
 uftrace record ycsb -load -run -db rocksdb -P workloads/workloadb -P rocksdb/rocksdb.properties -s
 ```
