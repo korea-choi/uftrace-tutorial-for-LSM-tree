@@ -96,9 +96,9 @@ $ uftrace graph
 
 **3) tui: terminal UI**  
   ```
-$ uftrace tui
+$uftrace tui
     TOTAL TIME : FUNCTION
-  263.921 ms : (1) db_bench                                                                                                                     
+  263.921 ms : (1) db_bench
    42.397 us :  ├▶(1) _GLOBAL__sub_I_leveldb::test::RandomString
              :  │
     0.304 us :  ├▶(1) _GLOBAL__sub_I_main
@@ -128,6 +128,7 @@ $ uftrace tui
   805.323 us :  │     │  ├─(20972) std::__cxx11::basic_string::_M_append
              :  │     │  │
   483.717 us :  │     │  └─(10486) operator delete
+
   ```
 
 ## [RocksDB](https://github.com/facebook/rocksdb)
@@ -364,7 +365,7 @@ $uftrace graph
   $ uftrace tui
     TOTAL TIME : FUNCTION
    30.960  s : (1) ycsb
-   88.230 us :  ├─(1) _GLOBAL__sub_I_ycsbc::LeveldbDB::db_                                                                                      
+   88.230 us :  ├─(1) _GLOBAL__sub_I_ycsbc::LeveldbDB::db_ 
    87.991 us :  │▶(1) __static_initialization_and_destruction_0
              :  │
    13.402 us :  ├▶(1) _GLOBAL__sub_I_ycsbc::BasicDB::mutex_
@@ -392,5 +393,3 @@ $uftrace graph
              :  │  │
   691.842 us :  │  ├▶(1) ParseCommandLine
   ```
-
-
