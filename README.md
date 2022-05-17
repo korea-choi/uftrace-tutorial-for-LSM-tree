@@ -65,7 +65,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
   uftrace replay --no-libcall -N ^leveldb::Slice::
   ```
 
-  - Find more about uftrace filiter[here](https://github.com/namhyung/uftrace/wiki/Filters).  
+  - Find more about uftrace filiter [here](https://github.com/namhyung/uftrace/wiki/Filters).  
 
 ## [RocksDB](https://github.com/facebook/rocksdb)
 **1. Download [RocksDB](https://github.com/facebook/rocksdb/blob/main/INSTALL.md) and Install dependencies**
