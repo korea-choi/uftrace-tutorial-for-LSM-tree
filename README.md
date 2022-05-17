@@ -25,7 +25,7 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pg")
   cd build
   uftrace record db_bench
   ```
-  - find LevelDB db_bench options [here](https://github.com/google/leveldb/blob/main/benchmarks/db_bench.cc).
+  - Find LevelDB db_bench options [here](https://github.com/google/leveldb/blob/main/benchmarks/db_bench.cc).
 
 **5. uftrace**  
 **1) replay: function call tracing**  
