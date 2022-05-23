@@ -1,4 +1,4 @@
-# uftrace-tutorial-for-LSM-tree
+# uftrace for LevelDB RocksDB with YCSB
 This documents explains how to trace and analyze LSM-tree with uftrace. You can also check it out on [uftrace wiki](https://github.com/namhyung/uftrace/wiki/uftrace-for-LevelDB-RocksDB-with-YCSB)
 
 ## [uftrace](https://github.com/namhyung/uftrace)
