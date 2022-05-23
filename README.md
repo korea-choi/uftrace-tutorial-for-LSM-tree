@@ -1,5 +1,5 @@
 # uftrace-tutorial-for-LSM-tree
-This documents explains how to analyze LSM-tree with uftrace. You can also check it out on [uftrace wiki](https://github.com/namhyung/uftrace/wiki/uftrace-for-LevelDB-RocksDB-with-YCSB)
+This documents explains how to trace and analyze LSM-tree with uftrace. You can also check it out on [uftrace wiki](https://github.com/namhyung/uftrace/wiki/uftrace-for-LevelDB-RocksDB-with-YCSB)
 
 ## [uftrace](https://github.com/namhyung/uftrace)
 The uftrace tool is to trace and analyze execution of a program written in C/C++. It was heavily inspired by the ftrace framework of the Linux kernel (especially function graph tracer) and supports userspace programs. It supports various kind of commands and filters to help analysis of the program execution and performance.
